@@ -2,10 +2,10 @@
   "name": "api01",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "cross-env NODE_ENV=development nodemon index.js"
+    "start:dev": "cross-env NODE_ENV=development nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@hapi/hapi": "^20.1.0",
-    "http-status-codes": "^2.1.4",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.1"
   }
