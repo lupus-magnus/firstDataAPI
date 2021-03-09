@@ -1,25 +1,31 @@
 const Hapi = require('@hapi/hapi');
-const { StatusCodes, ReasonPhrases } = require('http-status-codes');
-const getPessoa = require('./getPessoa');
+const getPerson = require('./modules/getPessoa');
+const showAllDB = require('./modules/queryDB').showAllDB;
 
 
 const init = async () =>{
-    const server = Hapi.server({ //server criado
+    const server = Hapi.server({
     
         port: 3000,
         host: 'localhost'
     }) 
 
-    //ROTA COM PARAMETRO POR QUERY
-    
+    server.route({
+        method:'GET',
+        path: '/',
+        handler: async (request, h) => {
+            return await showAllDB()
+        }
+    })
+
     server.route({
         method:'GET',
         path: '/query',
         handler: async (request, h) =>{
             const queryParam = request.query
-            const response = await getPessoa(queryParam.id)
-            console.log('log from index', response)
-            return {pessoa: response}
+            const response = await getPerson(queryParam.id)
+            console.log('Stored :\n', response)
+            return {person: response}
         }
     })
 
